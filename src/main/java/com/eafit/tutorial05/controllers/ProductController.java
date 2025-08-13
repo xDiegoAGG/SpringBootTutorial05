@@ -35,9 +35,12 @@ public class ProductController {
         }
 
         Map<String, String> product = products.get(productId);
+        double productPrice = Double.parseDouble(product.get("price"));
+
         model.addAttribute("title", product.get("name") + " - Online Store");
         model.addAttribute("subtitle", product.get("name") + " - Product Information");
         model.addAttribute("product", product);
+        model.addAttribute("productPrice", productPrice);
         return "product/show";
     }
 }
