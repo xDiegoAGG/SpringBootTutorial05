@@ -24,6 +24,7 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${product.name}"></h5>
+                        <h5 class="card-title" th:text="'$' + ${product.price}"></h5>
                         <p class="card-text" th:text="${product.description}"></p>
                     </div>
                 </div>

@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ProductController {
 
     private static final List<Map<String, String>> products = List.of(
-        Map.of("id", "1", "name", "TV", "description", "Best TV"),
-        Map.of("id", "2", "name", "iPhone", "description", "Best iPhone"),
-        Map.of("id", "3", "name", "Chromecast", "description", "Best Chromecast"),
-        Map.of("id", "4", "name", "Glasses", "description", "Best Glasses")
+        Map.of("id", "1", "name", "TV", "description", "Best TV", "price", "100"),
+        Map.of("id", "2", "name", "iPhone", "description", "Best iPhone", "price", "200"),
+        Map.of("id", "3", "name", "Chromecast", "description", "Best Chromecast", "price", "50"),
+        Map.of("id", "4", "name", "Glasses", "description", "Best Glasses", "price", "20")
     );
 
     @GetMapping("/products")
