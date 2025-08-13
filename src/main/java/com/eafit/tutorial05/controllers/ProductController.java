@@ -31,7 +31,7 @@ public class ProductController {
         int productId = Integer.parseInt(id) - 1;
 
         if (productId < 0 || productId >= products.size()) {
-            return "redirect:/products";
+            return "redirect:/";
         }
 
         Map<String, String> product = products.get(productId);
