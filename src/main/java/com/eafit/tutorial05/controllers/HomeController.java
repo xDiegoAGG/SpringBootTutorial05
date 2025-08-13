@@ -30,4 +30,11 @@ public class HomeController {
         model.addAttribute("phone_number", "3201234567");
         return "home/contact";
     }
+
+    @GetMapping("/products")
+    public String products(Model model) {
+        model.addAttribute("title", "Products - Online Store");
+        model.addAttribute("subtitle", "Our Products");
+        return "home/products";
+    }
 }
