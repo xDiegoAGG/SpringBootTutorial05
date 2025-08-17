@@ -1,12 +1,18 @@
 package com.eafit.tutorial05.controllers;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class ProductController {
@@ -42,5 +48,33 @@ public class ProductController {
         model.addAttribute("product", product);
         model.addAttribute("productPrice", productPrice);
         return "product/show";
+    }
+
+    // Create the product
+
+    @GetMapping("/products/create")
+    public String create(Model model) {
+        model.addAttribute("title", "Create Product");
+        model.addAttribute("productForm", new ProductForm());
+        return "product/create";
+    }
+
+    // Save the producto
+    @PostMapping("/products/save")
+    public String save(@Valid @ModelAttribute("productForm") ProductForm productForm, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("title", "Create Product");
+            return "product/create";
+        }
+
+        //Simulation
+
+        Map<String, String> newProduct = new HashMap<>();
+        newProduct.put("id", String.valueOf(products.size() + 1));
+        newProduct.put("name", productForm.getName());
+        newProduct.put("description", "Price: $" + productForm.getPrice());
+        products.add(newProduct);
+
+        return "redirect:/products";
     }
 }

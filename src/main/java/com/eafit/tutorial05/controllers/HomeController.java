@@ -9,8 +9,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("title", "Welcome to Spring Boot");
-        model.addAttribute("subtitle", "An Spring Boot Eafit App");
+        model.addAttribute("title", "First Steps in Spring Boot");
+        model.addAttribute("subtitle", "An Spring Boot Application");
         return "home/index";
     }
 
