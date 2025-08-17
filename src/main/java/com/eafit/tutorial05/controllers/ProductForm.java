@@ -9,9 +9,12 @@ public class ProductForm {
     @NotEmpty(message = "The product name is required")
     private String name;
 
+    @NotEmpty(message = "The product description is required")
+    private String description;
+
     @NotNull(message = "The price is required")
     @Positive(message = "The price must be greater than zero")
-    private Double price;
+    private int price;
 
     public String getName() {
         return name;
@@ -21,11 +24,19 @@ public class ProductForm {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 }

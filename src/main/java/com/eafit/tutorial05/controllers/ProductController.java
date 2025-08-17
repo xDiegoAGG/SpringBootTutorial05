@@ -2,6 +2,7 @@ package com.eafit.tutorial05.controllers;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -17,18 +18,19 @@ import jakarta.validation.Valid;
 @Controller
 public class ProductController {
 
-    private static final List<Map<String, String>> products = List.of(
+    private static final List<Map<String, String>> products = new ArrayList<>(List.of(
         Map.of("id", "1", "name", "TV", "description", "Best TV", "price", "100"),
         Map.of("id", "2", "name", "iPhone", "description", "Best iPhone", "price", "200"),
         Map.of("id", "3", "name", "Chromecast", "description", "Best Chromecast", "price", "50"),
         Map.of("id", "4", "name", "Glasses", "description", "Best Glasses", "price", "20")
-    );
+    ));
 
     @GetMapping("/products")
     public String index(Model model) {
         model.addAttribute("title", "Products - Online Store");
         model.addAttribute("subtitle", "List of products");
         model.addAttribute("products", products);
+        model.addAttribute("activePage", "products");
         return "product/index";
     }
 
@@ -67,14 +69,16 @@ public class ProductController {
             return "product/create";
         }
 
-        //Simulation
+        // Simulation
 
         Map<String, String> newProduct = new HashMap<>();
         newProduct.put("id", String.valueOf(products.size() + 1));
         newProduct.put("name", productForm.getName());
-        newProduct.put("description", "Price: $" + productForm.getPrice());
-        products.add(newProduct);
+        newProduct.put("description", productForm.getDescription());
+        newProduct.put("price", String.valueOf(productForm.getPrice()));
 
-        return "redirect:/products";
+        products.add(newProduct);
+        model.addAttribute("productName", productForm.getName());
+        return "product/created";
     }
 }
